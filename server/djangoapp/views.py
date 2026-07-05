@@ -9,14 +9,13 @@ from django.contrib import messages
 from datetime import datetime
 from .models import CarMake, CarModel
 from .restapis import get_request, analyze_review_sentiments, post_review
-
+from django.views.decorators.csrf import csrf_exempt
 
 
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
 import logging
 import json
-from django.views.decorators.csrf import csrf_exempt
 from .populate import initiate
 
 
@@ -124,6 +123,7 @@ def get_dealer_details(request, dealer_id):
 
 # Create a `add_review` view to submit a review
 # def add_review(request):
+@csrf_exempt
 def add_review(request):
     if(request.user.is_anonymous == False):
         data = json.loads(request.body)
