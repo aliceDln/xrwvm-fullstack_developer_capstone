@@ -89,18 +89,18 @@ app.get('/fetchDealer/:id', async (req, res) => {
 app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
   const data = JSON.parse(req.body);
   const documents = await Reviews.find().sort({ id: -1 });
-  let new_id = documents[0]["id"] + 1;
+  let new_id = documents[0].id + 1;
 
   const review = new Reviews({
     id: new_id,
-    name: data["name"],
-    dealership: data["dealership"],
-    review: data["review"],
-    purchase: data["purchase"],
-    purchase_date: data["purchase_date"],
-    car_make: data["car_make"],
-    car_model: data["car_model"],
-    car_year: data["car_year"],
+    name: data.name,
+    dealership: data.dealership,
+    review: data.review,
+    purchase: data.purchase,
+    purchase_date: data.purchase_date,
+    car_make: data.car_make,
+    car_model: data.car_model,
+    car_year: data.car_year,
   });
 
   try {
@@ -117,4 +117,3 @@ app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 
-// shakira shakira
